@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import Event from "@/model/event.model";
-import { tryCatch } from "@/lib/util";
+import { tryCatch } from "../tryCatch";
 
 export const POST = tryCatch(async (req: NextRequest) => {
   const { description, title, image_url, link, startDate } = await req.json();
