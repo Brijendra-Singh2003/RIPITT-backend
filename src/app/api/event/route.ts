@@ -7,7 +7,7 @@ export const POST = tryCatch(async (req: NextRequest) => {
   console.log({ description, title, image_url, link, startDate });
 
   if (!description || !title || !startDate)
-    return new NextResponse(JSON.stringify({ success: false, message: "missing required feilds" }));
+    return { success: false, message: "missing required feilds" };
 
   const data = await Event.create({
     description,
@@ -17,13 +17,13 @@ export const POST = tryCatch(async (req: NextRequest) => {
     startDate: new Date(startDate),
   });
 
-  return new NextResponse(JSON.stringify({ success: true, data }));
+  return { success: true, data };
 });
 
 export const DELETE = tryCatch(async (req: NextRequest) => {
   const { id } = await req.json();
   if (id) await Event.deleteOne({ _id: id });
-  return new NextResponse(JSON.stringify({ success: true }));
+  return { success: true };
 });
 
 export const PUT = tryCatch(async (req: NextRequest) => {
@@ -40,7 +40,7 @@ export const PUT = tryCatch(async (req: NextRequest) => {
     }
   );
 
-  return new NextResponse(JSON.stringify({ success: true, data }));
+  return { success: true, data };
 });
 
 export const GET = tryCatch(async (req: NextRequest) => {
@@ -53,5 +53,5 @@ export const GET = tryCatch(async (req: NextRequest) => {
     data = await Event.find().sort({ startDate: 1 });
   }
 
-  return new NextResponse(JSON.stringify({ success: true, data }));
+  return { success: true, data };
 });
