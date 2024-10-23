@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import { time } from "console";
+import mongoose from "mongoose"
 
 const EventSchema = new mongoose.Schema({
   description: {
@@ -21,6 +22,18 @@ const EventSchema = new mongoose.Schema({
     type: Date,
     required: true, // If you want it to be mandatory
   },
+  endDate: {
+    type: Date,
+    required: true, // If you want it to be mandatory
+  },
+  startTime:{
+    type:"string",
+    // required:true,
+  },
+  endTime:{
+    type:"string",
+    // required:true,
+  }
 });
 
 const Event = mongoose.model("Event", EventSchema);
